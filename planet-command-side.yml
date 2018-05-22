@@ -1,0 +1,37 @@
+message: Greetings from the PLANET-COMMAND-SIDE microservice [using the LOCALHOST config].
+
+#debug: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    
+spring:
+    application:
+        exchange: planet.events.fanout.exchange
+        queue: planet.default.queue
+        databaseName: planets
+        eventsCollectionName: events
+        snapshotCollectionName: snapshots
+    rabbitmq:
+        hostname: localhost
+        username: test
+        password: password
+    data:
+        mongodb:
+            uri: mongodb://localhost:27017/planets
+logging:
+    level:
+        root: INFO
+        org.springframework: INFO
+            #aop: DEBUG
+            #dao: DEBUG
+            #orm: DEBUG
+            #amqp: DEBUG
+            #data: DEBUG
+            #transaction: DEBUG
+        org.axonframework: INFO
+        com.soagrowers: INFO
+    file: ./build/logs/command-side-server.log
